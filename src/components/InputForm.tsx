@@ -102,29 +102,29 @@ export default function InputForm() {
   }, []);
 
   // Delete a transaction
-  const handleDelete = async (id: string) => {
-    try {
-      const transactionRef = doc(db, "transactions", id);
-      await deleteDoc(transactionRef);
+  // const handleDelete = async (id: string) => {
+  //   try {
+  //     const transactionRef = doc(db, "transactions", id);
+  //     await deleteDoc(transactionRef);
 
-      // Remove deleted transaction from UI
-      setTransactions(
-        transactions.filter((transaction) => transaction.id !== id)
-      );
-    } catch (error) {
-      console.error("Error deleting document:", error);
-    }
-  };
+  //     // Remove deleted transaction from UI
+  //     setTransactions(
+  //       transactions.filter((transaction) => transaction.id !== id)
+  //     );
+  //   } catch (error) {
+  //     console.error("Error deleting document:", error);
+  //   }
+  // };
 
   // Populate form fields for editing
-  const handleEdit = (transaction: Transaction) => {
-    setName(transaction.name);
-    setAmount(transaction.amount);
-    setDate(transaction.date);
-    setCategory(transaction.category);
-    setType(transaction.type);
-    setEditId(transaction.id);
-  };
+  // const handleEdit = (transaction: Transaction) => {
+  //   setName(transaction.name);
+  //   setAmount(transaction.amount);
+  //   setDate(transaction.date);
+  //   setCategory(transaction.category);
+  //   setType(transaction.type);
+  //   setEditId(transaction.id);
+  // };
 
   return (
     <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">

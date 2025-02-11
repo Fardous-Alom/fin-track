@@ -32,54 +32,54 @@ export default function Table() {
   const transactionsCollection = collection(db, "transactions");
 
   // Form Submission Handler
-  const formSubmitHandler = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent page reload
+  // const formSubmitHandler = async (e: React.FormEvent) => {
+  //   e.preventDefault(); // Prevent page reload
 
-    if (!name || !amount || !date || !category || !transactionType) {
-      alert("Please fill in all fields.");
-      return;
-    }
+  //   if (!name || !amount || !date || !category || !transactionType) {
+  //     alert("Please fill in all fields.");
+  //     return;
+  //   }
 
-    try {
-      if (editId) {
-        // Update existing transaction
-        const transactionRef = doc(db, "transactions", editId);
-        await updateDoc(transactionRef, {
-          name,
-          amount,
-          date,
-          category,
-          transaction_type: transactionType,
-        });
+  //   try {
+  //     if (editId) {
+  //       // Update existing transaction
+  //       const transactionRef = doc(db, "transactions", editId);
+  //       await updateDoc(transactionRef, {
+  //         name,
+  //         amount,
+  //         date,
+  //         category,
+  //         transaction_type: transactionType,
+  //       });
 
-        alert("Transaction updated successfully!");
-      } else {
-        // Add new transaction
-        await addDoc(transactionsCollection, {
-          name,
-          amount,
-          date,
-          category,
-          transaction_type: transactionType,
-        });
+  //       alert("Transaction updated successfully!");
+  //     } else {
+  //       // Add new transaction
+  //       await addDoc(transactionsCollection, {
+  //         name,
+  //         amount,
+  //         date,
+  //         category,
+  //         transaction_type: transactionType,
+  //       });
 
-        alert("Transaction added successfully!");
-      }
+  //       alert("Transaction added successfully!");
+  //     }
 
-      // Reset form fields
-      setName("");
-      setAmount(0);
-      setDate("");
-      setCategory("");
-      setTransactionType("");
-      setEditId(null);
+  //     // Reset form fields
+  //     setName("");
+  //     setAmount(0);
+  //     setDate("");
+  //     setCategory("");
+  //     setTransactionType("");
+  //     setEditId(null);
 
-      // Refresh transaction list
-      fetchTransactions();
-    } catch (error) {
-      console.error("Error saving transaction: ", error);
-    }
-  };
+  //     // Refresh transaction list
+  //     fetchTransactions();
+  //   } catch (error) {
+  //     console.error("Error saving transaction: ", error);
+  //   }
+  // };
 
   // Fetch transactions from Firestore
   const fetchTransactions = async () => {
