@@ -19,66 +19,9 @@ interface Transaction {
 }
 
 export default function Table() {
-  // const [name, setName] = useState<string>("");
-  // const [amount, setAmount] = useState<number>(0);
-  // const [date, setDate] = useState<string>("");
-  // const [category, setCategory] = useState<string>("");
-  // const [transactionType, setTransactionType] = useState<string>("");
   const [transactions, setTransactions] = useState<Array<Transaction>>([]);
-  // const [editId, setEditId] = useState<string | null>(null);
-
   const transactionsCollection = collection(db, "transactions");
-
-  // Form Submission Handler
-  // const formSubmitHandler = async (e: React.FormEvent) => {
-  //   e.preventDefault(); // Prevent page reload
-
-  //   if (!name || !amount || !date || !category || !transactionType) {
-  //     alert("Please fill in all fields.");
-  //     return;
-  //   }
-
-  //   try {
-  //     if (editId) {
-  //       // Update existing transaction
-  //       const transactionRef = doc(db, "transactions", editId);
-  //       await updateDoc(transactionRef, {
-  //         name,
-  //         amount,
-  //         date,
-  //         category,
-  //         transaction_type: transactionType,
-  //       });
-
-  //       alert("Transaction updated successfully!");
-  //     } else {
-  //       // Add new transaction
-  //       await addDoc(transactionsCollection, {
-  //         name,
-  //         amount,
-  //         date,
-  //         category,
-  //         transaction_type: transactionType,
-  //       });
-
-  //       alert("Transaction added successfully!");
-  //     }
-
-  //     // Reset form fields
-  //     setName("");
-  //     setAmount(0);
-  //     setDate("");
-  //     setCategory("");
-  //     setTransactionType("");
-  //     setEditId(null);
-
-  //     // Refresh transaction list
-  //     fetchTransactions();
-  //   } catch (error) {
-  //     console.error("Error saving transaction: ", error);
-  //   }
-  // };
-
+  
   // Fetch transactions from Firestore
   const fetchTransactions = async () => {
     try {
@@ -97,7 +40,7 @@ export default function Table() {
   // Fetch transactions on component mount
   useEffect(() => {
     fetchTransactions();
-  }, []);
+  }, [fetchTransactions]);
 
   // Delete a transaction
   const handleDelete = async (id: string) => {
@@ -113,17 +56,6 @@ export default function Table() {
       console.error("Error deleting document:", error);
     }
   };
-        
-  // Populate form fields for editing
-  // const handleEdit = (transaction: Transaction) => {
-  //   setName(transaction.name);
-  //   setAmount(transaction.amount);
-  //   setDate(transaction.date);
-  //   setCategory(transaction.category);
-  //   setTransactionType(transaction.type);
-  //   setEditId(transaction.id);
-  // };
-
   return (
     <section className="container px-4 mx-auto">
       <div className="flex items-center gap-x-3">

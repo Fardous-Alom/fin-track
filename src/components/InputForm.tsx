@@ -1,24 +1,23 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { db } from "@/config/firebaseConfig";
 import {
   collection,
   addDoc,
-  getDocs,
   doc,
   updateDoc,
 } from "firebase/firestore";
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
 
 // Define TypeScript interface for transaction data
-interface Transaction {
-  id: string;
-  name: string;
-  amount: number;
-  date: string;
-  category: string;
-  type: string;
-}
+// interface Transaction {
+//   id: string;
+//   name: string;
+//   amount: number;
+//   date: string;
+//   category: string;
+//   type: string;
+// }
 
 export default function InputForm() {
   const [name, setName] = useState<string>("");
