@@ -27,7 +27,7 @@ export default function InputForm() {
   const [date, setDate] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [type, setType] = useState<string>("");
-  const [transactions, setTransactions] = useState<Array<Transaction>>([]);
+  // const [transactions, setTransactions] = useState<Array<Transaction>>([]);
   const [editId, setEditId] = useState<string | null>(null);
   const transactionsCollection = collection(db, "transactions");
 
@@ -90,7 +90,7 @@ export default function InputForm() {
         ...doc.data(),
       })) as Transaction[];
 
-      setTransactions(transactionsData);
+      // setTransactions(transactionsData);
     } catch (error) {
       console.error("Error fetching transactions: ", error);
     }

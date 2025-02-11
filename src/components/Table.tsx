@@ -3,11 +3,9 @@ import React, { useEffect, useState } from "react";
 import { db } from "@/config/firebaseConfig";
 import {
   collection,
-  addDoc,
   getDocs,
   deleteDoc,
   doc,
-  updateDoc,
 } from "firebase/firestore";
 
 // Define TypeScript interface for transaction data
@@ -21,13 +19,13 @@ interface Transaction {
 }
 
 export default function Table() {
-  const [name, setName] = useState<string>("");
-  const [amount, setAmount] = useState<number>(0);
-  const [date, setDate] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
-  const [transactionType, setTransactionType] = useState<string>("");
+  // const [name, setName] = useState<string>("");
+  // const [amount, setAmount] = useState<number>(0);
+  // const [date, setDate] = useState<string>("");
+  // const [category, setCategory] = useState<string>("");
+  // const [transactionType, setTransactionType] = useState<string>("");
   const [transactions, setTransactions] = useState<Array<Transaction>>([]);
-  const [editId, setEditId] = useState<string | null>(null);
+  // const [editId, setEditId] = useState<string | null>(null);
 
   const transactionsCollection = collection(db, "transactions");
 
@@ -115,16 +113,16 @@ export default function Table() {
       console.error("Error deleting document:", error);
     }
   };
-
+        
   // Populate form fields for editing
-  const handleEdit = (transaction: Transaction) => {
-    setName(transaction.name);
-    setAmount(transaction.amount);
-    setDate(transaction.date);
-    setCategory(transaction.category);
-    setTransactionType(transaction.type);
-    setEditId(transaction.id);
-  };
+  // const handleEdit = (transaction: Transaction) => {
+  //   setName(transaction.name);
+  //   setAmount(transaction.amount);
+  //   setDate(transaction.date);
+  //   setCategory(transaction.category);
+  //   setTransactionType(transaction.type);
+  //   setEditId(transaction.id);
+  // };
 
   return (
     <section className="container px-4 mx-auto">
@@ -278,7 +276,7 @@ export default function Table() {
                           <div className="flex items-center gap-x-6">
                             <button
                               className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none"
-                              onClick={() => handleEdit(transaction)}
+                              // onClick={() => handleEdit(transaction)}
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
