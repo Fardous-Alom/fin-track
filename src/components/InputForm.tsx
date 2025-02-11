@@ -5,7 +5,6 @@ import {
   collection,
   addDoc,
   getDocs,
-  deleteDoc,
   doc,
   updateDoc,
 } from "firebase/firestore";
@@ -75,56 +74,31 @@ export default function InputForm() {
       setEditId(null);
 
       // Refresh transaction list
-      fetchTransactions();
+      // fetchTransactions();
     } catch (error) {
       console.error("Error saving transaction: ", error);
     }
   };
 
   // Fetch transactions from Firestore
-  const fetchTransactions = async () => {
-    try {
-      const querySnapshot = await getDocs(transactionsCollection);
-      const transactionsData: Transaction[] = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as Transaction[];
-
-      // setTransactions(transactionsData);
-    } catch (error) {
-      console.error("Error fetching transactions: ", error);
-    }
-  };
-
-  // Fetch transactions on component mount
-  useEffect(() => {
-    fetchTransactions();
-  }, []);
-
-  // Delete a transaction
-  // const handleDelete = async (id: string) => {
+  // const fetchTransactions = async () => {
   //   try {
-  //     const transactionRef = doc(db, "transactions", id);
-  //     await deleteDoc(transactionRef);
+  //     const querySnapshot = await getDocs(transactionsCollection);
+  //     const transactionsData: Transaction[] = querySnapshot.docs.map((doc) => ({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     })) as Transaction[];
 
-  //     // Remove deleted transaction from UI
-  //     setTransactions(
-  //       transactions.filter((transaction) => transaction.id !== id)
-  //     );
+  //     // setTransactions(transactionsData);
   //   } catch (error) {
-  //     console.error("Error deleting document:", error);
+  //     console.error("Error fetching transactions: ", error);
   //   }
   // };
 
-  // Populate form fields for editing
-  // const handleEdit = (transaction: Transaction) => {
-  //   setName(transaction.name);
-  //   setAmount(transaction.amount);
-  //   setDate(transaction.date);
-  //   setCategory(transaction.category);
-  //   setType(transaction.type);
-  //   setEditId(transaction.id);
-  // };
+  // Fetch transactions on component mount
+  // useEffect(() => {
+  //   fetchTransactions();
+  // }, []);
 
   return (
     <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">
