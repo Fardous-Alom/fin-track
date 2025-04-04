@@ -92,7 +92,7 @@ function AddTransaction() {
         <input
           type="number"
           value={amount}
-          placeholder="Amount (₹)"
+          placeholder="Amount (৳)"
           onChange={(e) => setAmount(e.target.value)}
         />
         <select value={category} onChange={(e) => setCategory(e.target.value)}>

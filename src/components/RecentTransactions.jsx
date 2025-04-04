@@ -25,7 +25,7 @@ function RecentTransactions({ transactions }) {
                   tx.type === "Income" ? "income" : "expense"
                 }`}
               >
-                ₹{tx.amount.toLocaleString()}
+                ৳{tx.amount.toLocaleString()}
               </span>
             </li>
           ))}

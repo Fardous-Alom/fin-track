@@ -117,11 +117,11 @@ function Report() {
       <div className="summary-cards">
         <div className="income-card">
           <p>Total Income</p>
-          <h3 className="income">₹{totalIncome.toLocaleString()}</h3>
+          <h3 className="income">৳{totalIncome.toLocaleString()}</h3>
         </div>
         <div className="expense-card">
           <p>Total Expense</p>
-          <h3 className="expense">₹{totalExpense.toLocaleString()}</h3>
+          <h3 className="expense">৳{totalExpense.toLocaleString()}</h3>
         </div>
       </div>
 
