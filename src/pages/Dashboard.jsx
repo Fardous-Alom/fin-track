@@ -12,7 +12,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import NoTransactions from "../Components/NoTransactions";
+import NoTransactions from "../components/NoTransactions";
 import { useNavigate } from "react-router-dom";
 
 ChartJS.register(

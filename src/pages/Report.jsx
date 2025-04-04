@@ -10,7 +10,7 @@ import {
   BarElement,
 } from "chart.js";
 import "../styles/Report.css";
-import NoTransactions from "../Components/NoTransactions";
+import NoTransactions from "../components/NoTransactions";
 
 ChartJS.register(
   ArcElement,
