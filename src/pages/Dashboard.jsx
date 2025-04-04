@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Dashboard.css";
 import TransactionCards from "../components/TransactionCards";
-import RecentTransactions from "../Components/RecentTransactions";
+import RecentTransactions from "../components/RecentTransactions";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
