@@ -24,6 +24,15 @@ ChartJS.register(
   Legend
 );
 
+const categories = [
+  "Salary",
+  "Groceries",
+  "Dining",
+  "Transport",
+  "Entertainment",
+  "Others",
+];
+
 function Dashboard() {
   const [transactions, setTransactions] = useState([]);
   const [totalIncome, setTotalIncome] = useState(0);
@@ -32,43 +41,53 @@ function Dashboard() {
   const [categoryData, setCategoryData] = useState({});
   const [maxExpense, setMaxExpense] = useState(0);
 
-  const categories = [
-    "Salary",
-    "Groceries",
-    "Dining",
-    "Transport",
-    "Entertainment",
-    "Others",
-  ];
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const existingTransactions =
-      JSON.parse(localStorage.getItem("transactions")) || [];
-    setTransactions(existingTransactions);
+  const parseTransactions = () => {
+    try {
+      const data = JSON.parse(localStorage.getItem("transactions"));
+      return Array.isArray(data) ? data : [];
+    } catch (err) {
+      console.error("Failed to parse transactions:", err);
+      return [];
+    }
+  };
+
+  const calculateStats = (transactions) => {
     let income = 0;
     let expense = 0;
-    let categoryBreakDown = {};
+    let categoryBreakdown = Object.fromEntries(
+      categories.map((cat) => [cat, 0])
+    );
     let highestExpense = 0;
-    categories.forEach((cat) => (categoryBreakDown[cat] = 0));
-    existingTransactions.forEach((tx) => {
-      if (tx.type == "Income") {
-        income += tx.amount;
+
+    transactions.forEach((tx) => {
+      const { type, amount, category } = tx;
+
+      if (type === "Income") {
+        income += amount;
       } else {
-        expense += tx.amount;
-        categoryBreakDown[tx.category] =
-          (categoryBreakDown[tx.category] || 0) + tx.amount;
-        if (categoryBreakDown[tx.category] > highestExpense) {
-          highestExpense = categoryBreakDown[tx.category];
+        expense += amount;
+        if (categoryBreakdown.hasOwnProperty(category)) {
+          categoryBreakdown[category] += amount;
+          if (categoryBreakdown[category] > highestExpense) {
+            highestExpense = categoryBreakdown[category];
+          }
         }
       }
     });
 
-    setTotalExpense(expense);
     setTotalIncome(income);
+    setTotalExpense(expense);
     setBalance(income - expense);
-    setCategoryData(categoryBreakDown);
+    setCategoryData(categoryBreakdown);
     setMaxExpense(highestExpense);
+  };
+
+  useEffect(() => {
+    const storedTransactions = parseTransactions();
+    setTransactions(storedTransactions);
+    calculateStats(storedTransactions);
   }, []);
 
   const chartData = {
@@ -95,12 +114,12 @@ function Dashboard() {
         beginAtZero: true,
         suggestedMax: maxExpense > 0 ? maxExpense * 1.2 : 10,
         grid: {
-          display: false, // Hide horizontal grid lines
+          display: false,
         },
       },
       x: {
         grid: {
-          display: false, // Hide vertical grid lines
+          display: false,
         },
       },
     },
@@ -118,20 +137,23 @@ function Dashboard() {
           + Add Transaction
         </button>
       </div>
+
       <TransactionCards
         balance={balance}
         income={totalIncome}
         expense={totalExpense}
       />
+
       <div className="transactions-chart-row">
         <div className="transactions half-width">
           <h3>Recent Transactions</h3>
-          {transactions.length == 0 ? (
+          {transactions.length === 0 ? (
             <NoTransactions />
           ) : (
             <RecentTransactions transactions={transactions} />
           )}
         </div>
+
         <div className="expense-chart half-width">
           <h3>Expense by Category</h3>
           {chartData.datasets[0].data.every((value) => value === 0) ? (
@@ -146,4 +168,5 @@ function Dashboard() {
     </div>
   );
 }
+
 export default Dashboard;
