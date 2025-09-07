@@ -20,8 +20,8 @@ backend/dist/
 
 # Environment files
 .env
-frontend/.env
-backend/.env
+# frontend/.env
+# backend/.env
 
 # Vite cache
 frontend/.vite
