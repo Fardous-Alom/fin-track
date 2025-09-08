@@ -55,7 +55,7 @@ function Header() {
           {/* buttons - start */}
           <Link
             to="/login"
-            className="hidden rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:text-gray-700 md:text-base lg:inline-block"
+            className="hidden rounded-lg bg-indigo-600 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-700 focus-visible:ring active:text-gray-700 md:text-base lg:inline-block"
           >
             Login
           </Link>

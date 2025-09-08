@@ -1,5 +1,8 @@
-import React from "react";
+import React,{useState} from "react";
+import TransactionForm from "./TransactionForm";
+
 function Overview() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12">
       <div className="mx-auto max-w-screen-xl px-4 md:px-8">
@@ -46,8 +49,9 @@ function Overview() {
 
           {/* stat - start */}
           <div className="flex flex-col items-center justify-center rounded-lg bg-gray-100 p-4 md:p-8">
-            <button>Add Transaction</button>
+            <button onClick={() => setShowModal(true)}>Add Transaction</button>
           </div>
+          {showModal && <TransactionForm isOpen={showModal} onClose={() => setShowModal(false)} />}
           {/* stat - end */}
         </div>
       </div>
