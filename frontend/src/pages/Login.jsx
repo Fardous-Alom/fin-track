@@ -1,56 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(email);
+    console.log(password);
+  };
   return (
-    <div class="bg-white py-6 sm:py-8 lg:py-12">
-      <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-        <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">
+    <div className="bg-white py-6 sm:py-8 lg:py-12 px-6">
+      <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
+        <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">
           Login
         </h2>
 
-        <form class="mx-auto max-w-lg rounded-lg border">
-          <div class="flex flex-col gap-4 p-4 md:p-8">
+        <form
+          className="mx-auto max-w-lg rounded-lg border border-gray-300"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex flex-col gap-4 p-4 md:p-8">
             <div>
-              <label
-                for="email"
-                class="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
+              <label htmlFor="email" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">
                 Email
               </label>
-              <input
-                name="email"
-                class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
+              <input name="email" className="w-full rounded border border-gray-300 bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-500 transition duration-100 focus:ring" type="email" placeholder="example@mail.com" required onChange={(e) => setEmail(e.target.value)} />
             </div>
 
             <div>
-              <label
-                for="password"
-                class="mb-2 inline-block text-sm text-gray-800 sm:text-base"
-              >
+              <label htmlFor="password" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">
                 Password
               </label>
-              <input
-                name="password"
-                class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-              />
+              <input name="password" className="w-full rounded border border-gray-300 bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-500 transition duration-100 focus:ring" type="password" placeholder="********" required onChange={(e) => setPassword(e.target.value)} />
             </div>
 
-            <button class="block rounded-lg bg-gray-800 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-gray-700 focus-visible:ring active:bg-gray-600 md:text-base">
+            <button className="block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base" type="submit">
               Log in
             </button>
 
-            <div class="relative flex items-center justify-center">
-              <span class="absolute inset-x-0 h-px bg-gray-300"></span>
-              <span class="relative bg-white px-4 text-sm text-gray-400">
+            <div className="relative flex items-center justify-center">
+              <span className="absolute inset-x-0 h-px bg-gray-300"></span>
+              <span className="relative bg-white px-4 text-sm text-gray-400">
                 Log in with social
               </span>
             </div>
 
-            <button class="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base">
+            <button className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base">
               <svg
-                class="h-5 w-5 shrink-0"
+                className="h-5 w-5 shrink-0"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
@@ -78,12 +76,12 @@ function Login() {
             </button>
           </div>
 
-          <div class="flex items-center justify-center bg-gray-100 p-4">
-            <p class="text-center text-sm text-gray-500">
+          <div className="flex items-center justify-center bg-gray-100 p-4">
+            <p className="text-center text-sm text-gray-500">
               Don't have an account?{" "}
               <Link
                 to="/register"
-                class="text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700"
+                className="text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700"
               >
                 Register
               </Link>
